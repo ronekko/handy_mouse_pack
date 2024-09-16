@@ -26,7 +26,7 @@ document.addEventListener('mousedown', async (event) => {
     const targetElement = event.target;
 
     // Perform the paste only if the clicked element is a text area or text box.
-    if (targetElement.matches('textarea, input[type="text"]')) {
+    if (targetElement.matches('textarea, input[type="text"], input[type="search"]')) {
       targetElement.focus();  // Activate the clicked element.
 
       try {
@@ -48,7 +48,7 @@ document.addEventListener('wheel', (event) => {
   const targetElement = event.target;
 
   // If the target is not a text box, exit the function.
-  if (!targetElement.matches('input[type="text"]')) return;
+  if (!targetElement.matches('input[type="text"], input[type="search"]')) return;
 
   event.preventDefault();  // Disable page-wide scrolling.
 

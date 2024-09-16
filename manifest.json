@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "Handy Mouse Pack",
-  "version": "1.0",
-  "description": "Simplifies tasks like text copy, clipboard paste, text box clearing, and dropdown selection into quick one-action operations.",
+  "version": "1.1.0",
+  "description": "Simplifies tasks like text copy, clipboard paste, text box clearing, and dropdown selection into quick one-action mouse operations.",
   "permissions": [
     "clipboardRead",
     "clipboardWrite"
