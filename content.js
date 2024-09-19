@@ -1,7 +1,10 @@
 // 1. Copy selected text to the clipboard on mouseup
 // When the user selects text and releases the mouse button, this copies the selected text to the clipboard.
 // If no text is selected, the function does nothing.
-document.addEventListener('mouseup', async () => {
+document.addEventListener('mouseup', async (event) => {
+  // If the target is a textarea or a text box, exit the function.
+  if (event.target.matches('textarea, input, [role="textbox"] *')) return;
+
   const selectedText = window.getSelection().toString().trim();  // Retrieve the selected text and trim any whitespace.
 
   // If selected text exists, copy it to the clipboard.
