@@ -82,3 +82,38 @@ document.addEventListener('wheel', (event) => {
     targetElement.selectedIndex += 1;
   }
 }, { passive: false });  // Set passive: false to allow preventDefault()
+
+// 5. Scroll page by dragging with middle mouse button
+// When the user clicks the middle mouse button and drags, scroll the page proportionally to the mouse movement.
+// The scrolling is controlled by displacement, not speed, and the proportional factor is adjustable.
+let isMiddleMouseDragging = false;
+let startX = 0;
+let startY = 0;
+let scrollStartX = 0;
+let scrollStartY = 0;
+const scrollFactor = 8;  // Adjust this factor to control scrolling sensitivity.
+
+document.addEventListener('mousedown', (event) => {
+  if (event.button === 1) {  // Middle mouse button
+    event.preventDefault();
+    isMiddleMouseDragging = true;
+    startX = event.clientX;
+    startY = event.clientY;
+    scrollStartX = window.scrollX;
+    scrollStartY = window.scrollY;
+  }
+});
+
+document.addEventListener('mousemove', (event) => {
+  if (isMiddleMouseDragging) {
+    const deltaX = (event.clientX - startX) * scrollFactor;
+    const deltaY = (event.clientY - startY) * scrollFactor;
+    window.scrollTo(scrollStartX + deltaX, scrollStartY + deltaY);
+  }
+});
+
+document.addEventListener('mouseup', (event) => {
+  if (event.button === 1) {  // Middle mouse button
+    isMiddleMouseDragging = false;
+  }
+});
