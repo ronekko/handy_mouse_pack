@@ -1,6 +1,6 @@
 # handy_mouse_pack
 
-[**Handy Mouse Pack**](https://chromewebstore.google.com/detail/handy-mouse-pack/gobdfmnfmpaccdbjpcnnljgpobagigcg)  is a browser extension that turns everyday mouse actions—like copying, pasting, clearing fields, and more—into swift, one-movement operations, adding a touch of convenience to your browsing.
+[**Handy Mouse Pack**](https://chromewebstore.google.com/detail/handy-mouse-pack/gobdfmnfmpaccdbjpcnnljgpobagigcg)  is a browser extension that turns everyday mouse actions—like copying, pasting, clearing fields, and more—into quick, one-movement operations, adding a touch of convenience to your browsing.
 
 # Features and How to Use
 
