@@ -46,7 +46,7 @@ document.addEventListener('mousedown', async (event) => {
 // 3. Clear text boxes with a mouse wheel scroll
 // When the user scrolls the wheel over a text box, this clears the content of that text box.
 // If the target is not a text box, the function does nothing, but if it is, it clears the content.
-// After clearing, the text box will be focused and activated.
+// After clearing, the text box will be focused and activated. The action can be undone with Ctrl+Z.
 document.addEventListener('wheel', (event) => {
   const targetElement = event.target;
 
@@ -55,8 +55,10 @@ document.addEventListener('wheel', (event) => {
 
   event.preventDefault();  // Disable page-wide scrolling.
 
-  targetElement.value = '';  // Clear all content from the text box.
-  targetElement.focus();  // Activate the text box after clearing.
+  // Clear all content from the text box in a way that can be undone with Ctrl+Z.
+  targetElement.focus();
+  targetElement.select();
+  document.execCommand('delete');  // NOTE: 'document.execCommand' is deprecated.
 }, { passive: false });  // Set passive: false to allow preventDefault()
 
 // 4. Change dropdown menu options with a mouse wheel scroll
