@@ -8,4 +8,5 @@
 - **Clear Text Boxes**: Scroll the mouse wheel while hovering over a text box to quickly clear its contents and prepare for new input.
 - **Change Dropdown Selections**: Scroll the mouse wheel while hovering over a dropdown menu to easily change the selected option.
 - **Copy Selected Text**: Just drag to select text, and it will automatically be copied to the clipboard.
-- **Scroll Page by Dragging with Middle Mouse Button**: Hold the middle mouse button and drag to scroll the page proportionally to the mouse movement.
+- **Scroll Page with Middle Button Drag**: Hold the middle mouse button and drag to scroll the page proportionally to the mouse movement.
+- **Resize Images with Right Button Drag**: Right-click and drag on an image to scale it proportionally. Dragging right or down enlarges the image, while dragging left or up shrinks it. To reset the image to its original size, simply right-click on it.
