@@ -119,3 +119,64 @@ document.addEventListener('mouseup', (event) => {
     isMiddleMouseDragging = false;
   }
 });
+
+// 6. Scale image by right mouse button dragging
+// When the user right-clicks and drags on an image, scale the image proportionally to the drag distance.
+// Dragging right or down will enlarge the image, dragging left or up will shrink the image.
+let isRightMouseDragging = false;
+let imgStartX = 0;
+let imgStartY = 0;
+const scaleFactor = 0.005;  // Adjust this factor to control scaling sensitivity.
+let currentImage = null;
+
+// Function to handle the reset of the image size.
+function resetImageSize(event) {
+  event.preventDefault();  // Prevent context menu from appearing.
+  const image = event.target;
+  if (image.dataset.originalWidth && image.dataset.originalHeight) {
+    image.style.width = `${image.dataset.originalWidth}px`;
+    image.style.height = `${image.dataset.originalHeight}px`;
+    delete image.dataset.originalWidth;
+    delete image.dataset.originalHeight;
+    image.removeEventListener('contextmenu', resetImageSize);
+  }
+}
+
+document.addEventListener('mousedown', (event) => {
+  if (event.button === 2 && event.target.tagName.toLowerCase() === 'img') {  // Right mouse button on an image.
+    // Start scaling the image.
+    isRightMouseDragging = true;
+    imgStartX = event.clientX;
+    imgStartY = event.clientY;
+    currentImage = event.target;
+  }
+});
+
+document.addEventListener('mousemove', (event) => {
+  if (isRightMouseDragging && currentImage) {
+    if (!currentImage.dataset.originalWidth) {
+      // Register the original size and add the contextmenu event listener to reset size.
+      currentImage.dataset.originalWidth = currentImage.width;
+      currentImage.dataset.originalHeight = currentImage.height;
+      currentImage.addEventListener('contextmenu', resetImageSize);
+    }
+
+    const deltaX = event.clientX - imgStartX;
+    const deltaY = event.clientY - imgStartY;
+    const distance = deltaX + deltaY;  // Combined horizontal and vertical movement.
+    const scale = Math.exp(scaleFactor * distance);
+    const newWidth = currentImage.dataset.originalWidth * scale;
+    const newHeight = currentImage.dataset.originalHeight * scale;
+
+    // Update image dimensions to expand towards bottom-right corner.
+    currentImage.style.width = `${newWidth}px`;
+    currentImage.style.height = `${newHeight}px`;
+  }
+});
+
+document.addEventListener('mouseup', (event) => {
+  if (event.button === 2 && currentImage) {  // Right mouse button
+    isRightMouseDragging = false;
+    currentImage = null;
+  }
+});
