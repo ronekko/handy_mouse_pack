@@ -154,6 +154,13 @@ document.addEventListener('mousedown', (event) => {
 
 document.addEventListener('mousemove', (event) => {
   if (isRightMouseDragging && currentImage) {
+    // Exit image scaling state.
+    if ((event.buttons & 2) === 0) {
+      isRightMouseDragging = false;
+      currentImage = null;
+      return;
+    }
+
     if (!currentImage.dataset.originalWidth) {
       // Register the original size and add the contextmenu event listener to reset size.
       currentImage.dataset.originalWidth = currentImage.width;
@@ -171,12 +178,5 @@ document.addEventListener('mousemove', (event) => {
     // Update image dimensions to expand towards bottom-right corner.
     currentImage.style.width = `${newWidth}px`;
     currentImage.style.height = `${newHeight}px`;
-  }
-});
-
-document.addEventListener('mouseup', (event) => {
-  if (event.button === 2 && currentImage) {  // Right mouse button
-    isRightMouseDragging = false;
-    currentImage = null;
   }
 });
